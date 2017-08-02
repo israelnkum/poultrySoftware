@@ -70,9 +70,9 @@ public class loading_Admin extends javax.swing.JFrame {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 470, -1, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 370, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 520));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 530));
 
-        setSize(new java.awt.Dimension(528, 515));
+        setSize(new java.awt.Dimension(538, 526));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

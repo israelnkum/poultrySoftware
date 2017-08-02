@@ -97,13 +97,15 @@ public class forgotPassword extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Import_25px.png"))); // NOI18N
         jButton1.setText("Retrieve");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 450, -1, -1));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 450, -1, -1));
 
         jButton2.setBackground(new java.awt.Color(8, 8, 45));
         jButton2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Search_25px_3.png"))); // NOI18N
         jButton2.setText("Search");
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, -1, -1));
 
         jButton3.setBackground(new java.awt.Color(8, 8, 45));
@@ -111,6 +113,7 @@ public class forgotPassword extends javax.swing.JFrame {
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Back_25px_4.png"))); // NOI18N
         jButton3.setText("Back");
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -153,6 +156,7 @@ public class forgotPassword extends javax.swing.JFrame {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 270, -1));
 
+        jTextField2.setEditable(false);
         jTextField2.setBackground(new java.awt.Color(8, 8, 45));
         jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(255, 255, 255));
@@ -160,6 +164,7 @@ public class forgotPassword extends javax.swing.JFrame {
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 270, 40));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 270, -1));
 
+        jTextField3.setEditable(false);
         jTextField3.setBackground(new java.awt.Color(8, 8, 45));
         jTextField3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(255, 255, 255));
@@ -167,6 +172,7 @@ public class forgotPassword extends javax.swing.JFrame {
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 270, 40));
         jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 270, -1));
 
+        jTextField4.setEditable(false);
         jTextField4.setBackground(new java.awt.Color(8, 8, 45));
         jTextField4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField4.setForeground(new java.awt.Color(255, 255, 255));
@@ -174,6 +180,7 @@ public class forgotPassword extends javax.swing.JFrame {
         jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 270, 40));
         jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, 270, -1));
 
+        jTextField5.setEditable(false);
         jTextField5.setBackground(new java.awt.Color(8, 8, 45));
         jTextField5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField5.setForeground(new java.awt.Color(255, 255, 255));
@@ -187,6 +194,7 @@ public class forgotPassword extends javax.swing.JFrame {
         jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 270, 40));
         jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 270, -1));
 
+        jTextField7.setEditable(false);
         jTextField7.setBackground(new java.awt.Color(8, 8, 45));
         jTextField7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField7.setForeground(new java.awt.Color(255, 255, 255));

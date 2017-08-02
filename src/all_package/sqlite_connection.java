@@ -39,7 +39,17 @@ public class sqlite_connection {
         
         if(!res.next()){
         
-            JOptionPane.showMessageDialog(null,"Building the user Table");
+           Statement state2 = con.createStatement();
+           state2.execute("CREATE TABALE new_user(user_id integer,"
+                   + "fName varchar(60),"
+                   + "lName varchar (60),"
+                   + "pass_word varchar (60),"
+                   + "DoB date,"
+                   + "gender varchar(10),"
+                   + "phone varchar (20),"
+                   + "sec_Ques varchar (60),"
+                   + "ansa varchar (60),"
+                   + "user_type varchar (10);");
         }
     }
     }

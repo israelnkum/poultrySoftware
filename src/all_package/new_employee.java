@@ -153,7 +153,7 @@ public class new_employee extends javax.swing.JFrame {
         jPanel1.add(phone_num, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 260, 30));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Phone_25px.png"))); // NOI18N
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 30, 50));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 340, 30, 50));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
@@ -186,7 +186,7 @@ public class new_employee extends javax.swing.JFrame {
         jPanel1.add(passWord, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 270, 30));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Password_25px_1.png"))); // NOI18N
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, -1, 50));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, -1, 50));
         jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 290, 10));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
@@ -222,7 +222,7 @@ public class new_employee extends javax.swing.JFrame {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, -1, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Circled User Male_25px.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 35, -1, 40));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, -1, 40));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 290, 10));
 
         user_name.setBackground(new java.awt.Color(8, 8, 45));

@@ -3,7 +3,6 @@ package all_package;
 
 import java.sql.*;
 import java.sql.Connection;
-import javax.swing.JOptionPane;
 public class sqlite_connection {
     
     private static Connection con;
@@ -13,7 +12,7 @@ public class sqlite_connection {
        if(con==null){
        
        getConnection();
-               }
+    }
        Statement state = con.createStatement();
     
     
@@ -24,7 +23,7 @@ public class sqlite_connection {
     private void getConnection() throws ClassNotFoundException, SQLException{
     
         Class.forName("org.sqlite.JDBC");
-        con=DriverManager.getConnection("jdbc:sqlite:poultry_Management_System");
+        con=DriverManager.getConnection("jdbc:sqlite:poultry_Management_System.db");
         
         initialise();
     
@@ -49,7 +48,8 @@ public class sqlite_connection {
                    + "phone varchar (20),"
                    + "sec_Ques varchar (60),"
                    + "ansa varchar (60),"
-                   + "user_type varchar (10);");
+                   + "user_type varchar (10)"
+                   + "primary key integer auto_increament;");
         }
     }
     }

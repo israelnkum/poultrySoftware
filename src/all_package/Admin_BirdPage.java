@@ -46,6 +46,16 @@ public class Admin_BirdPage extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog( null, e);
         }
+        finally{
+        
+        try{
+         rs.close();
+         pst.close();
+        }
+        catch(Exception e){
+        
+        
+        }}
     
     }
 
@@ -180,7 +190,7 @@ public class Admin_BirdPage extends javax.swing.JFrame {
 
         jComboBox2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jComboBox2.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Category A", "Categoty B", "Category C", "Category D" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chooe...", "Category A", "Category B", "Category C", "Category D" }));
         jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 150, 40));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -425,6 +435,16 @@ public class Admin_BirdPage extends javax.swing.JFrame {
         catch (Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
+            finally{
+        
+        try{
+         rs.close();
+         pst.close();
+        }
+        catch(Exception e){
+        
+        
+        }}
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -460,6 +480,16 @@ public class Admin_BirdPage extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(null, e);
             }
+              finally{
+        
+        try{
+         rs.close();
+         pst.close();
+        }
+        catch(Exception e){
+        
+        
+        }}
 
         }
 

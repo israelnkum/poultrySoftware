@@ -47,6 +47,16 @@ public class Employee_BirdPage extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog( null, e);
         }
+          finally{
+        
+        try{
+         rs.close();
+         pst.close();
+        }
+        catch(Exception e){
+        
+        
+        }}
     
     }
 
@@ -181,7 +191,7 @@ public class Employee_BirdPage extends javax.swing.JFrame {
 
         jComboBox2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jComboBox2.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chooe...", "Category A", "Category B", "Category C", "Category D" }));
         jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 150, 40));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -428,6 +438,16 @@ public class Employee_BirdPage extends javax.swing.JFrame {
         catch (Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
+           finally{
+        
+        try{
+         rs.close();
+         pst.close();
+        }
+        catch(Exception e){
+        
+        
+        }}
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -463,6 +483,16 @@ public class Employee_BirdPage extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(null, e);
             }
+              finally{
+        
+        try{
+         rs.close();
+         pst.close();
+        }
+        catch(Exception e){
+        
+        
+        }}
 
         }
 
@@ -486,7 +516,8 @@ public class Employee_BirdPage extends javax.swing.JFrame {
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Employee_BirdPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        }
+        catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(Employee_BirdPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(Employee_BirdPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);

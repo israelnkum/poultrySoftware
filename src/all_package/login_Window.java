@@ -237,6 +237,7 @@ public class login_Window extends javax.swing.JFrame {
             
             if(jComboBox1.getSelectedItem().equals("Admin")){
             setVisible(false);
+            
             loading_Admin on = new loading_Admin();
             
             on.setUpLoading();

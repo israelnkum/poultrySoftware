@@ -17,12 +17,16 @@ import javax.swing.JTextField;
  * @author oSikaNi iSraeL
  */
 public class Employee_new_bird extends javax.swing.JFrame {
+             Connection conn;
+    ResultSet rs;
+    PreparedStatement pst;
 
     /**
      * Creates new form Employee_new_bird
      */
     public Employee_new_bird() {
         initComponents();
+            conn = java_Connection.ConnecrDb();
         
         jPanel2.setBackground(new Color(0,0,0,7));
     }
@@ -207,7 +211,7 @@ public class Employee_new_bird extends javax.swing.JFrame {
         Connection  conn = java_Connection.ConnecrDb();
        
        PreparedStatement ps;
-         ResultSet rs;
+         ResultSet rs = null;
          
           
          try{
@@ -241,6 +245,16 @@ public class Employee_new_bird extends javax.swing.JFrame {
          
              JOptionPane.showMessageDialog(null, e);
          }
+           finally{
+        
+        try{
+         rs.close();
+         pst.close();
+        }
+        catch(Exception e){
+        
+        
+        }}
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

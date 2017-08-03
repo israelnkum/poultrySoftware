@@ -213,7 +213,7 @@ public class admin_New_Bird extends javax.swing.JFrame {
         Connection  conn = java_Connection.ConnecrDb();
        
        PreparedStatement ps;
-         ResultSet rs;
+         ResultSet rs = null;
          
           
          try{
@@ -247,6 +247,16 @@ public class admin_New_Bird extends javax.swing.JFrame {
          
              JOptionPane.showMessageDialog(null, e);
          }
+          finally{
+        
+        try{
+         rs.close();
+         pst.close();
+        }
+        catch(Exception e){
+        
+        
+        }}
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

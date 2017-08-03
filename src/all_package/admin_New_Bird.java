@@ -252,9 +252,8 @@ public class admin_New_Bird extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
         setVisible(false);
-        Admin_BirdPage ap = new Admin_BirdPage();
+        Admin_BirdPage ap =new Admin_BirdPage();
         ap.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

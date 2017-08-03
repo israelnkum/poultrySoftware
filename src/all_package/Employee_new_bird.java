@@ -5,6 +5,7 @@
  */
 package all_package;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,6 +23,8 @@ public class Employee_new_bird extends javax.swing.JFrame {
      */
     public Employee_new_bird() {
         initComponents();
+        
+        jPanel2.setBackground(new Color(0,0,0,7));
     }
 
     /**
@@ -119,6 +122,11 @@ public class Employee_new_bird extends javax.swing.JFrame {
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Back_25px_4.png"))); // NOI18N
         jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, -1, -1));
 
         color_type.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -235,6 +243,13 @@ public class Employee_new_bird extends javax.swing.JFrame {
          }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        Employee_BirdPage ap = new Employee_BirdPage();
+        ap.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,7 +5,15 @@
  */
 package all_package;
 
+import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -15,13 +23,15 @@ public class new_employee extends javax.swing.JFrame {
     
     int xMouse;
     int yMouse;
-
+    Connection conn;
+    ResultSet rs;
+    PreparedStatement pst;
     /**
      * Creates new form new_employee
      */
     public new_employee() {
         initComponents();
-        
+          conn = java_Connection.ConnecrDb();
         jPanel3.setBackground(new Color (0,0,0,7));
     }
 
@@ -116,7 +126,12 @@ public class new_employee extends javax.swing.JFrame {
         user_type.setBackground(new java.awt.Color(255, 255, 255));
         user_type.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         user_type.setForeground(new java.awt.Color(255, 255, 255));
-        user_type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose one...", "Admin", "Employee" }));
+        user_type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose one..", "Admin", "Employee" }));
+        user_type.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                user_typeKeyPressed(evt);
+            }
+        });
         jPanel1.add(user_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, 170, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
@@ -128,6 +143,11 @@ public class new_employee extends javax.swing.JFrame {
         answer.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         answer.setForeground(new java.awt.Color(255, 255, 255));
         answer.setBorder(null);
+        answer.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                answerKeyPressed(evt);
+            }
+        });
         jPanel1.add(answer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, 290, 30));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
@@ -139,6 +159,11 @@ public class new_employee extends javax.swing.JFrame {
         security.setBackground(new java.awt.Color(255, 255, 255));
         security.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         security.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose one...", "What is your mother's maiden name?", "What food do you like best?", "What is the name of your teacher?", "What is the name of your pet?", "What is your favorate color?" }));
+        security.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                securityKeyPressed(evt);
+            }
+        });
         jPanel1.add(security, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 330, 40));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
@@ -150,6 +175,11 @@ public class new_employee extends javax.swing.JFrame {
         phone_num.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         phone_num.setForeground(new java.awt.Color(255, 255, 255));
         phone_num.setBorder(null);
+        phone_num.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                phone_numKeyPressed(evt);
+            }
+        });
         jPanel1.add(phone_num, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 260, 30));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Phone_25px.png"))); // NOI18N
@@ -162,7 +192,12 @@ public class new_employee extends javax.swing.JFrame {
 
         gender.setBackground(new java.awt.Color(255, 255, 255));
         gender.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose one...", "Male", "Female" }));
+        gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose one..", "Male", "Female" }));
+        gender.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                genderKeyPressed(evt);
+            }
+        });
         jPanel1.add(gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 160, 30));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
@@ -172,6 +207,11 @@ public class new_employee extends javax.swing.JFrame {
 
         dateChooser.setBackground(new java.awt.Color(255, 255, 255));
         dateChooser.setDateFormatString(" yyyy-MM-dd");
+        dateChooser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                dateChooserKeyPressed(evt);
+            }
+        });
         jPanel1.add(dateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 290, 30));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
@@ -183,6 +223,11 @@ public class new_employee extends javax.swing.JFrame {
         passWord.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         passWord.setForeground(new java.awt.Color(255, 255, 255));
         passWord.setBorder(null);
+        passWord.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passWordKeyPressed(evt);
+            }
+        });
         jPanel1.add(passWord, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 270, 30));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Password_25px_1.png"))); // NOI18N
@@ -200,12 +245,22 @@ public class new_employee extends javax.swing.JFrame {
         l_name.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         l_name.setForeground(new java.awt.Color(255, 255, 255));
         l_name.setBorder(null);
+        l_name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                l_nameKeyPressed(evt);
+            }
+        });
         jPanel1.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 140, 30));
 
         f_name.setBackground(new java.awt.Color(8, 8, 45));
         f_name.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         f_name.setForeground(new java.awt.Color(255, 255, 255));
         f_name.setBorder(null);
+        f_name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                f_nameKeyPressed(evt);
+            }
+        });
         jPanel1.add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 140, 30));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
@@ -229,6 +284,11 @@ public class new_employee extends javax.swing.JFrame {
         user_name.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         user_name.setForeground(new java.awt.Color(255, 255, 255));
         user_name.setBorder(null);
+        user_name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                user_nameKeyPressed(evt);
+            }
+        });
         jPanel1.add(user_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 290, 30));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
@@ -268,7 +328,77 @@ public class new_employee extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        
+        
+        if(
+                 gender.getSelectedItem().equals("Choose one...")
+                || user_name.getText().isEmpty() 
+                ||f_name.getText().isEmpty() 
+                ||l_name.getText().isEmpty() 
+                ||security.getSelectedItem().equals("Choose one...") 
+                ||  answer.getText().isEmpty()
+                ||  user_type.getSelectedItem().equals("Choose one...")
+                ||passWord.getText().isEmpty()
+                || phone_num.getText().isEmpty()
+                || ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText().isEmpty()
+              
+                )
+        {
+        
+             setVisible(false);
 
+        new_Employee_Error lf = new new_Employee_Error();
+
+        lf.setVisible(true);
+        }
+        
+        else{
+        try{
+        
+            String sql = "Insert into new_employee(user_name,fname,lname,passWord,DoB,gender, phone, sec_ques,ansa, user_type) values (?,?,?,?,?,?,?,?,?,?)";
+            
+            pst=conn.prepareStatement(sql);
+            pst.setString(1, user_name.getText());
+            pst.setString(2, f_name.getText());
+            pst.setString(3, l_name.getText());
+            pst.setString(4, passWord.getText());
+            pst.setString(5, ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText());
+           
+            pst.setString(6,(String) gender.getSelectedItem());
+             pst.setString(7, phone_num.getText());
+            pst.setString(8,(String) security.getSelectedItem());
+            pst.setString(9, answer.getText());
+            pst.setString(10,(String) user_type.getSelectedItem());
+            
+            pst.execute();
+                          
+          
+             JOptionPane.showMessageDialog(null, "New Account Created");
+            
+            
+        user_name.setText(null);
+        f_name.setText(null);
+        l_name.setText(null);
+         passWord.setText(null);
+        dateChooser.setDate(null);
+        gender.setSelectedItem("Choose one..");
+        phone_num.setText(null);
+       
+        security.setSelectedItem("Choose one..");
+        answer.setText(null);
+        user_type.setSelectedItem("Choose one..");
+        
+            
+            
+            
+            
+        }
+        catch(HeadlessException | SQLException e){
+        
+        JOptionPane.showMessageDialog(null, "Fill all blank space");
+        }
+        }
+        
         
 
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -287,6 +417,694 @@ public class new_employee extends javax.swing.JFrame {
         xMouse=evt.getX();
         yMouse=evt.getY();
     }//GEN-LAST:event_formMousePressed
+
+    private void user_nameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_user_nameKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+        
+         if(
+                 gender.getSelectedItem().equals("Choose one...")
+                || user_name.getText().isEmpty() 
+                ||f_name.getText().isEmpty() 
+                ||l_name.getText().isEmpty() 
+                ||security.getSelectedItem().equals("Choose one...") 
+                ||  answer.getText().isEmpty()
+                ||  user_type.getSelectedItem().equals("Choose one...")
+                ||passWord.getText().isEmpty()
+                || phone_num.getText().isEmpty()
+                || ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText().isEmpty()
+              
+                )
+        {
+        
+             setVisible(false);
+
+        new_Employee_Error lf = new new_Employee_Error();
+
+        lf.setVisible(true);
+        }
+        
+        else{
+        try{
+        
+            String sql = "Insert into new_employee(user_name,fname,lname,passWord,DoB,gender, phone, sec_ques,ansa, user_type) values (?,?,?,?,?,?,?,?,?,?)";
+            
+            pst=conn.prepareStatement(sql);
+            pst.setString(1, user_name.getText());
+            pst.setString(2, f_name.getText());
+            pst.setString(3, l_name.getText());
+            pst.setString(4, passWord.getText());
+            pst.setString(5, ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText());
+           
+            pst.setString(6,(String) gender.getSelectedItem());
+             pst.setString(7, phone_num.getText());
+            pst.setString(8,(String) security.getSelectedItem());
+            pst.setString(9, answer.getText());
+            pst.setString(10,(String) user_type.getSelectedItem());
+            
+            pst.execute();
+                          
+          
+             JOptionPane.showMessageDialog(null, "New Account Created");
+            
+            
+        user_name.setText(null);
+        f_name.setText(null);
+        l_name.setText(null);
+         passWord.setText(null);
+        dateChooser.setDate(null);
+        gender.setSelectedItem("Choose one..");
+        phone_num.setText(null);
+       
+        security.setSelectedItem("Choose one..");
+        answer.setText(null);
+        user_type.setSelectedItem("Choose one..");
+        
+            
+            
+            
+            
+        }
+        catch(HeadlessException | SQLException e){
+        
+        JOptionPane.showMessageDialog(null, "Fill all blank space");
+        }
+        }
+        }
+    }//GEN-LAST:event_user_nameKeyPressed
+
+    private void f_nameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_f_nameKeyPressed
+        // TODO add your handling code here:
+        
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+         if(
+                 gender.getSelectedItem().equals("Choose one...")
+                || user_name.getText().isEmpty() 
+                ||f_name.getText().isEmpty() 
+                ||l_name.getText().isEmpty() 
+                ||security.getSelectedItem().equals("Choose one...") 
+                ||  answer.getText().isEmpty()
+                ||  user_type.getSelectedItem().equals("Choose one...")
+                ||passWord.getText().isEmpty()
+                || phone_num.getText().isEmpty()
+                || ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText().isEmpty()
+              
+                )
+        {
+        
+             setVisible(false);
+
+        new_Employee_Error lf = new new_Employee_Error();
+
+        lf.setVisible(true);
+        }
+        
+        else{
+        try{
+        
+            String sql = "Insert into new_employee(user_name,fname,lname,passWord,DoB,gender, phone, sec_ques,ansa, user_type) values (?,?,?,?,?,?,?,?,?,?)";
+            
+            pst=conn.prepareStatement(sql);
+            pst.setString(1, user_name.getText());
+            pst.setString(2, f_name.getText());
+            pst.setString(3, l_name.getText());
+            pst.setString(4, passWord.getText());
+            pst.setString(5, ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText());
+           
+            pst.setString(6,(String) gender.getSelectedItem());
+             pst.setString(7, phone_num.getText());
+            pst.setString(8,(String) security.getSelectedItem());
+            pst.setString(9, answer.getText());
+            pst.setString(10,(String) user_type.getSelectedItem());
+            
+            pst.execute();
+                          
+          
+             JOptionPane.showMessageDialog(null, "New Account Created");
+            
+            
+        user_name.setText(null);
+        f_name.setText(null);
+        l_name.setText(null);
+         passWord.setText(null);
+        dateChooser.setDate(null);
+        gender.setSelectedItem("Choose one..");
+        phone_num.setText(null);
+       
+        security.setSelectedItem("Choose one..");
+        answer.setText(null);
+        user_type.setSelectedItem("Choose one..");
+        
+            
+            
+            
+            
+        }
+        catch(HeadlessException | SQLException e){
+        
+        JOptionPane.showMessageDialog(null, "Fill all blank space");
+        }
+        }
+        }
+    }//GEN-LAST:event_f_nameKeyPressed
+
+    private void l_nameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_l_nameKeyPressed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_l_nameKeyPressed
+
+    private void passWordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passWordKeyPressed
+        // TODO add your handling code here:
+        
+               
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+         if(
+                 gender.getSelectedItem().equals("Choose one...")
+                || user_name.getText().isEmpty() 
+                ||f_name.getText().isEmpty() 
+                ||l_name.getText().isEmpty() 
+                ||security.getSelectedItem().equals("Choose one...") 
+                ||  answer.getText().isEmpty()
+                ||  user_type.getSelectedItem().equals("Choose one...")
+                ||passWord.getText().isEmpty()
+                || phone_num.getText().isEmpty()
+                || ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText().isEmpty()
+              
+                )
+        {
+        
+             setVisible(false);
+
+        new_Employee_Error lf = new new_Employee_Error();
+
+        lf.setVisible(true);
+        }
+        
+        else{
+        try{
+        
+            String sql = "Insert into new_employee(user_name,fname,lname,passWord,DoB,gender, phone, sec_ques,ansa, user_type) values (?,?,?,?,?,?,?,?,?,?)";
+            
+            pst=conn.prepareStatement(sql);
+            pst.setString(1, user_name.getText());
+            pst.setString(2, f_name.getText());
+            pst.setString(3, l_name.getText());
+            pst.setString(4, passWord.getText());
+            pst.setString(5, ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText());
+           
+            pst.setString(6,(String) gender.getSelectedItem());
+             pst.setString(7, phone_num.getText());
+            pst.setString(8,(String) security.getSelectedItem());
+            pst.setString(9, answer.getText());
+            pst.setString(10,(String) user_type.getSelectedItem());
+            
+            pst.execute();
+                          
+          
+             JOptionPane.showMessageDialog(null, "New Account Created");
+            
+            
+        user_name.setText(null);
+        f_name.setText(null);
+        l_name.setText(null);
+         passWord.setText(null);
+        dateChooser.setDate(null);
+        gender.setSelectedItem("Choose one..");
+        phone_num.setText(null);
+       
+        security.setSelectedItem("Choose one..");
+        answer.setText(null);
+        user_type.setSelectedItem("Choose one..");
+        
+            
+            
+            
+            
+        }
+        catch(HeadlessException | SQLException e){
+        
+        JOptionPane.showMessageDialog(null, "Fill all blank space");
+        }
+        }
+        }
+    }//GEN-LAST:event_passWordKeyPressed
+
+    private void dateChooserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dateChooserKeyPressed
+        // TODO add your handling code here:
+        
+               
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+         if(
+                 gender.getSelectedItem().equals("Choose one...")
+                || user_name.getText().isEmpty() 
+                ||f_name.getText().isEmpty() 
+                ||l_name.getText().isEmpty() 
+                ||security.getSelectedItem().equals("Choose one...") 
+                ||  answer.getText().isEmpty()
+                ||  user_type.getSelectedItem().equals("Choose one...")
+                ||passWord.getText().isEmpty()
+                || phone_num.getText().isEmpty()
+                || ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText().isEmpty()
+              
+                )
+        {
+        
+             setVisible(false);
+
+        new_Employee_Error lf = new new_Employee_Error();
+
+        lf.setVisible(true);
+        }
+        
+        else{
+        try{
+        
+            String sql = "Insert into new_employee(user_name,fname,lname,passWord,DoB,gender, phone, sec_ques,ansa, user_type) values (?,?,?,?,?,?,?,?,?,?)";
+            
+            pst=conn.prepareStatement(sql);
+            pst.setString(1, user_name.getText());
+            pst.setString(2, f_name.getText());
+            pst.setString(3, l_name.getText());
+            pst.setString(4, passWord.getText());
+            pst.setString(5, ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText());
+           
+            pst.setString(6,(String) gender.getSelectedItem());
+             pst.setString(7, phone_num.getText());
+            pst.setString(8,(String) security.getSelectedItem());
+            pst.setString(9, answer.getText());
+            pst.setString(10,(String) user_type.getSelectedItem());
+            
+            pst.execute();
+                          
+          
+             JOptionPane.showMessageDialog(null, "New Account Created");
+            
+            
+        user_name.setText(null);
+        f_name.setText(null);
+        l_name.setText(null);
+         passWord.setText(null);
+        dateChooser.setDate(null);
+        gender.setSelectedItem("Choose one..");
+        phone_num.setText(null);
+       
+        security.setSelectedItem("Choose one..");
+        answer.setText(null);
+        user_type.setSelectedItem("Choose one..");
+        
+            
+            
+            
+            
+        }
+        catch(HeadlessException | SQLException e){
+        
+        JOptionPane.showMessageDialog(null, "Fill all blank space");
+        }
+        }
+        }
+    }//GEN-LAST:event_dateChooserKeyPressed
+
+    private void genderKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_genderKeyPressed
+        // TODO add your handling code here:
+        
+               
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+         if(
+                 gender.getSelectedItem().equals("Choose one...")
+                || user_name.getText().isEmpty() 
+                ||f_name.getText().isEmpty() 
+                ||l_name.getText().isEmpty() 
+                ||security.getSelectedItem().equals("Choose one...") 
+                ||  answer.getText().isEmpty()
+                ||  user_type.getSelectedItem().equals("Choose one...")
+                ||passWord.getText().isEmpty()
+                || phone_num.getText().isEmpty()
+                || ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText().isEmpty()
+              
+                )
+        {
+        
+             setVisible(false);
+
+        new_Employee_Error lf = new new_Employee_Error();
+
+        lf.setVisible(true);
+        }
+        
+        else{
+        try{
+        
+            String sql = "Insert into new_employee(user_name,fname,lname,passWord,DoB,gender, phone, sec_ques,ansa, user_type) values (?,?,?,?,?,?,?,?,?,?)";
+            
+            pst=conn.prepareStatement(sql);
+            pst.setString(1, user_name.getText());
+            pst.setString(2, f_name.getText());
+            pst.setString(3, l_name.getText());
+            pst.setString(4, passWord.getText());
+            pst.setString(5, ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText());
+           
+            pst.setString(6,(String) gender.getSelectedItem());
+             pst.setString(7, phone_num.getText());
+            pst.setString(8,(String) security.getSelectedItem());
+            pst.setString(9, answer.getText());
+            pst.setString(10,(String) user_type.getSelectedItem());
+            
+            pst.execute();
+                          
+          
+             JOptionPane.showMessageDialog(null, "New Account Created");
+            
+            
+        user_name.setText(null);
+        f_name.setText(null);
+        l_name.setText(null);
+         passWord.setText(null);
+        dateChooser.setDate(null);
+        gender.setSelectedItem("Choose one..");
+        phone_num.setText(null);
+       
+        security.setSelectedItem("Choose one..");
+        answer.setText(null);
+        user_type.setSelectedItem("Choose one..");
+        
+            
+            
+            
+            
+        }
+        catch(HeadlessException | SQLException e){
+        
+        JOptionPane.showMessageDialog(null, "Fill all blank space");
+        }
+        }
+        }
+    }//GEN-LAST:event_genderKeyPressed
+
+    private void phone_numKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phone_numKeyPressed
+        // TODO add your handling code here:
+        
+               
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+         if(
+                 gender.getSelectedItem().equals("Choose one...")
+                || user_name.getText().isEmpty() 
+                ||f_name.getText().isEmpty() 
+                ||l_name.getText().isEmpty() 
+                ||security.getSelectedItem().equals("Choose one...") 
+                ||  answer.getText().isEmpty()
+                ||  user_type.getSelectedItem().equals("Choose one...")
+                ||passWord.getText().isEmpty()
+                || phone_num.getText().isEmpty()
+                || ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText().isEmpty()
+              
+                )
+        {
+        
+             setVisible(false);
+
+        new_Employee_Error lf = new new_Employee_Error();
+
+        lf.setVisible(true);
+        }
+        
+        else{
+        try{
+        
+            String sql = "Insert into new_employee(user_name,fname,lname,passWord,DoB,gender, phone, sec_ques,ansa, user_type) values (?,?,?,?,?,?,?,?,?,?)";
+            
+            pst=conn.prepareStatement(sql);
+            pst.setString(1, user_name.getText());
+            pst.setString(2, f_name.getText());
+            pst.setString(3, l_name.getText());
+            pst.setString(4, passWord.getText());
+            pst.setString(5, ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText());
+           
+            pst.setString(6,(String) gender.getSelectedItem());
+             pst.setString(7, phone_num.getText());
+            pst.setString(8,(String) security.getSelectedItem());
+            pst.setString(9, answer.getText());
+            pst.setString(10,(String) user_type.getSelectedItem());
+            
+            pst.execute();
+                          
+          
+             JOptionPane.showMessageDialog(null, "New Account Created");
+            
+            
+        user_name.setText(null);
+        f_name.setText(null);
+        l_name.setText(null);
+         passWord.setText(null);
+        dateChooser.setDate(null);
+        gender.setSelectedItem("Choose one..");
+        phone_num.setText(null);
+       
+        security.setSelectedItem("Choose one..");
+        answer.setText(null);
+        user_type.setSelectedItem("Choose one..");
+        
+            
+            
+            
+            
+        }
+        catch(HeadlessException | SQLException e){
+        
+        JOptionPane.showMessageDialog(null, "Fill all blank space");
+        }
+        }
+        }
+    }//GEN-LAST:event_phone_numKeyPressed
+
+    private void securityKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_securityKeyPressed
+        // TODO add your handling code here:
+        
+               
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+         if(
+                 gender.getSelectedItem().equals("Choose one...")
+                || user_name.getText().isEmpty() 
+                ||f_name.getText().isEmpty() 
+                ||l_name.getText().isEmpty() 
+                ||security.getSelectedItem().equals("Choose one...") 
+                ||  answer.getText().isEmpty()
+                ||  user_type.getSelectedItem().equals("Choose one...")
+                ||passWord.getText().isEmpty()
+                || phone_num.getText().isEmpty()
+                || ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText().isEmpty()
+              
+                )
+        {
+        
+             setVisible(false);
+
+        new_Employee_Error lf = new new_Employee_Error();
+
+        lf.setVisible(true);
+        }
+        
+        else{
+        try{
+        
+            String sql = "Insert into new_employee(user_name,fname,lname,passWord,DoB,gender, phone, sec_ques,ansa, user_type) values (?,?,?,?,?,?,?,?,?,?)";
+            
+            pst=conn.prepareStatement(sql);
+            pst.setString(1, user_name.getText());
+            pst.setString(2, f_name.getText());
+            pst.setString(3, l_name.getText());
+            pst.setString(4, passWord.getText());
+            pst.setString(5, ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText());
+           
+            pst.setString(6,(String) gender.getSelectedItem());
+             pst.setString(7, phone_num.getText());
+            pst.setString(8,(String) security.getSelectedItem());
+            pst.setString(9, answer.getText());
+            pst.setString(10,(String) user_type.getSelectedItem());
+            
+            pst.execute();
+                          
+          
+             JOptionPane.showMessageDialog(null, "New Account Created");
+            
+            
+        user_name.setText(null);
+        f_name.setText(null);
+        l_name.setText(null);
+         passWord.setText(null);
+        dateChooser.setDate(null);
+        gender.setSelectedItem("Choose one..");
+        phone_num.setText(null);
+       
+        security.setSelectedItem("Choose one..");
+        answer.setText(null);
+        user_type.setSelectedItem("Choose one..");
+        
+            
+            
+            
+            
+        }
+        catch(HeadlessException | SQLException e){
+        
+        JOptionPane.showMessageDialog(null, "Fill all blank space");
+        }
+        }
+        }
+    }//GEN-LAST:event_securityKeyPressed
+
+    private void answerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_answerKeyPressed
+        // TODO add your handling code here:
+        
+               
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+         if(
+                 gender.getSelectedItem().equals("Choose one...")
+                || user_name.getText().isEmpty() 
+                ||f_name.getText().isEmpty() 
+                ||l_name.getText().isEmpty() 
+                ||security.getSelectedItem().equals("Choose one...") 
+                ||  answer.getText().isEmpty()
+                ||  user_type.getSelectedItem().equals("Choose one...")
+                ||passWord.getText().isEmpty()
+                || phone_num.getText().isEmpty()
+                || ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText().isEmpty()
+              
+                )
+        {
+        
+             setVisible(false);
+
+        new_Employee_Error lf = new new_Employee_Error();
+
+        lf.setVisible(true);
+        }
+        
+        else{
+        try{
+        
+            String sql = "Insert into new_employee(user_name,fname,lname,passWord,DoB,gender, phone, sec_ques,ansa, user_type) values (?,?,?,?,?,?,?,?,?,?)";
+            
+            pst=conn.prepareStatement(sql);
+            pst.setString(1, user_name.getText());
+            pst.setString(2, f_name.getText());
+            pst.setString(3, l_name.getText());
+            pst.setString(4, passWord.getText());
+            pst.setString(5, ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText());
+           
+            pst.setString(6,(String) gender.getSelectedItem());
+             pst.setString(7, phone_num.getText());
+            pst.setString(8,(String) security.getSelectedItem());
+            pst.setString(9, answer.getText());
+            pst.setString(10,(String) user_type.getSelectedItem());
+            
+            pst.execute();
+                          
+          
+             JOptionPane.showMessageDialog(null, "New Account Created");
+            
+            
+        user_name.setText(null);
+        f_name.setText(null);
+        l_name.setText(null);
+         passWord.setText(null);
+        dateChooser.setDate(null);
+        gender.setSelectedItem("Choose one..");
+        phone_num.setText(null);
+       
+        security.setSelectedItem("Choose one..");
+        answer.setText(null);
+        user_type.setSelectedItem("Choose one..");
+        
+            
+            
+            
+            
+        }
+        catch(HeadlessException | SQLException e){
+        
+        JOptionPane.showMessageDialog(null, "Fill all blank space");
+        }
+        }
+        }
+    }//GEN-LAST:event_answerKeyPressed
+
+    private void user_typeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_user_typeKeyPressed
+        // TODO add your handling code here:
+        
+               
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+         if(
+                 gender.getSelectedItem().equals("Choose one...")
+                || user_name.getText().isEmpty() 
+                ||f_name.getText().isEmpty() 
+                ||l_name.getText().isEmpty() 
+                ||security.getSelectedItem().equals("Choose one...") 
+                ||  answer.getText().isEmpty()
+                ||  user_type.getSelectedItem().equals("Choose one...")
+                ||passWord.getText().isEmpty()
+                || phone_num.getText().isEmpty()
+                || ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText().isEmpty()
+              
+                )
+        {
+        
+             setVisible(false);
+
+        new_Employee_Error lf = new new_Employee_Error();
+
+        lf.setVisible(true);
+        }
+        
+        else{
+        try{
+        
+            String sql = "Insert into new_employee(user_name,fname,lname,passWord,DoB,gender, phone, sec_ques,ansa, user_type) values (?,?,?,?,?,?,?,?,?,?)";
+            
+            pst=conn.prepareStatement(sql);
+            pst.setString(1, user_name.getText());
+            pst.setString(2, f_name.getText());
+            pst.setString(3, l_name.getText());
+            pst.setString(4, passWord.getText());
+            pst.setString(5, ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText());
+           
+            pst.setString(6,(String) gender.getSelectedItem());
+             pst.setString(7, phone_num.getText());
+            pst.setString(8,(String) security.getSelectedItem());
+            pst.setString(9, answer.getText());
+            pst.setString(10,(String) user_type.getSelectedItem());
+            
+            pst.execute();
+                          
+          
+             JOptionPane.showMessageDialog(null, "New Account Created");
+            
+            
+        user_name.setText(null);
+        f_name.setText(null);
+        l_name.setText(null);
+         passWord.setText(null);
+        dateChooser.setDate(null);
+        gender.setSelectedItem("Choose one..");
+        phone_num.setText(null);
+       
+        security.setSelectedItem("Choose one..");
+        answer.setText(null);
+        user_type.setSelectedItem("Choose one..");
+        
+            
+            
+            
+            
+        }
+        catch(HeadlessException | SQLException e){
+        
+        JOptionPane.showMessageDialog(null, "Fill all blank space");
+        }
+        }
+        }
+    }//GEN-LAST:event_user_typeKeyPressed
 
     /**
      * @param args the command line arguments

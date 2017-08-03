@@ -5,7 +5,12 @@
  */
 package all_package;
 
+import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,6 +29,72 @@ public class forgotPassword extends javax.swing.JFrame {
         
         jPanel2.setBackground(new Color (0,0,0,7));
     }
+    
+         public void Search(){
+    String a1=user_name.getText();
+    Connection con =java_Connection.ConnecrDb();
+      PreparedStatement ps;
+         ResultSet rs;
+    String sql ="select * from new_employee where user_name='"+a1+"'";
+    
+    try{
+           ps=con.prepareStatement(sql);
+           rs=ps.executeQuery();
+        if(rs.next()){
+     fname.setText(rs.getString(3));
+     lname.setText(rs.getString(4));
+     userType.setText(rs.getString(11));
+     sec.setText(rs.getString(9));
+    
+     rs.close();
+     ps.close();
+     
+    
+    } 
+        
+        else {
+        JOptionPane.showMessageDialog(null, "Enter Your Username");
+        }
+    }
+    
+    catch (Exception e){
+    
+        JOptionPane.showMessageDialog(null, e);
+    
+    }
+
+    }
+         
+           public void Retrive(){
+           Connection con =java_Connection.ConnecrDb();
+      PreparedStatement ps;
+         ResultSet rs;
+             
+              String a1=user_name.getText();
+              String a2=ansa.getText();
+              
+              String sql ="select  * from new_employee  where ansa='"+a2+"'";
+          
+          try{
+              ps=con.prepareStatement(sql);
+              rs=ps.executeQuery();
+              if(rs.next()){
+              
+                  
+                   pass.setText(rs.getString(5));
+              }
+              else{
+              JOptionPane.showMessageDialog(null," Answer your security Question");
+              }
+          
+          }
+          
+          catch(Exception e){
+              
+               JOptionPane.showMessageDialog(null, e);
+          
+          }
+          }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,7 +106,7 @@ public class forgotPassword extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        user_name = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -49,16 +120,16 @@ public class forgotPassword extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        jTextField2 = new javax.swing.JTextField();
+        fname = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
-        jTextField3 = new javax.swing.JTextField();
+        lname = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
-        jTextField4 = new javax.swing.JTextField();
+        userType = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        sec = new javax.swing.JTextField();
+        ansa = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
-        jTextField7 = new javax.swing.JTextField();
+        pass = new javax.swing.JTextField();
         jSeparator8 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -80,11 +151,16 @@ public class forgotPassword extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(8, 8, 45));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.setBackground(new java.awt.Color(8, 8, 45));
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setBorder(null);
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 270, 40));
+        user_name.setBackground(new java.awt.Color(8, 8, 45));
+        user_name.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        user_name.setForeground(new java.awt.Color(255, 255, 255));
+        user_name.setBorder(null);
+        user_name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                user_nameKeyPressed(evt);
+            }
+        });
+        jPanel1.add(user_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 270, 40));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 270, -1));
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -98,6 +174,11 @@ public class forgotPassword extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Import_25px.png"))); // NOI18N
         jButton1.setText("Retrieve");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 450, -1, -1));
 
         jButton2.setBackground(new java.awt.Color(8, 8, 45));
@@ -106,6 +187,11 @@ public class forgotPassword extends javax.swing.JFrame {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Search_25px_3.png"))); // NOI18N
         jButton2.setText("Search");
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, -1, -1));
 
         jButton3.setBackground(new java.awt.Color(8, 8, 45));
@@ -117,6 +203,11 @@ public class forgotPassword extends javax.swing.JFrame {
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+        jButton3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton3KeyPressed(evt);
             }
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 520, -1, -1));
@@ -156,50 +247,55 @@ public class forgotPassword extends javax.swing.JFrame {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 270, -1));
 
-        jTextField2.setEditable(false);
-        jTextField2.setBackground(new java.awt.Color(8, 8, 45));
-        jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField2.setBorder(null);
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 270, 40));
+        fname.setEditable(false);
+        fname.setBackground(new java.awt.Color(8, 8, 45));
+        fname.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        fname.setForeground(new java.awt.Color(255, 255, 255));
+        fname.setBorder(null);
+        jPanel1.add(fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 270, 40));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 270, -1));
 
-        jTextField3.setEditable(false);
-        jTextField3.setBackground(new java.awt.Color(8, 8, 45));
-        jTextField3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField3.setBorder(null);
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 270, 40));
+        lname.setEditable(false);
+        lname.setBackground(new java.awt.Color(8, 8, 45));
+        lname.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        lname.setForeground(new java.awt.Color(255, 255, 255));
+        lname.setBorder(null);
+        jPanel1.add(lname, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 270, 40));
         jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 270, -1));
 
-        jTextField4.setEditable(false);
-        jTextField4.setBackground(new java.awt.Color(8, 8, 45));
-        jTextField4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField4.setBorder(null);
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 270, 40));
+        userType.setEditable(false);
+        userType.setBackground(new java.awt.Color(8, 8, 45));
+        userType.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        userType.setForeground(new java.awt.Color(255, 255, 255));
+        userType.setBorder(null);
+        jPanel1.add(userType, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 270, 40));
         jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, 270, -1));
 
-        jTextField5.setEditable(false);
-        jTextField5.setBackground(new java.awt.Color(8, 8, 45));
-        jTextField5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField5.setBorder(null);
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 270, 40));
+        sec.setEditable(false);
+        sec.setBackground(new java.awt.Color(8, 8, 45));
+        sec.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        sec.setForeground(new java.awt.Color(255, 255, 255));
+        sec.setBorder(null);
+        jPanel1.add(sec, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 270, 40));
 
-        jTextField6.setBackground(new java.awt.Color(8, 8, 45));
-        jTextField6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField6.setBorder(null);
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 270, 40));
+        ansa.setBackground(new java.awt.Color(8, 8, 45));
+        ansa.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        ansa.setForeground(new java.awt.Color(255, 255, 255));
+        ansa.setBorder(null);
+        ansa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ansaKeyPressed(evt);
+            }
+        });
+        jPanel1.add(ansa, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 270, 40));
         jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 270, -1));
 
-        jTextField7.setEditable(false);
-        jTextField7.setBackground(new java.awt.Color(8, 8, 45));
-        jTextField7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField7.setBorder(null);
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, 270, 40));
+        pass.setEditable(false);
+        pass.setBackground(new java.awt.Color(8, 8, 45));
+        pass.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        pass.setForeground(new java.awt.Color(255, 255, 255));
+        pass.setBorder(null);
+        jPanel1.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, 270, 40));
         jPanel1.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, 270, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, 640, 570));
@@ -252,6 +348,42 @@ public class forgotPassword extends javax.swing.JFrame {
         lw.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Search();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Retrive();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void user_nameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_user_nameKeyPressed
+        // TODO add your handling code here:
+        
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        
+             Search();
+        }
+    }//GEN-LAST:event_user_nameKeyPressed
+
+    private void ansaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ansaKeyPressed
+        // TODO add your handling code here:
+        
+         Retrive();
+    }//GEN-LAST:event_ansaKeyPressed
+
+    private void jButton3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton3KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        setVisible(false);
+        
+        login_Window lw = new login_Window();
+        
+        lw.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton3KeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -288,6 +420,8 @@ public class forgotPassword extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField ansa;
+    private javax.swing.JTextField fname;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -309,12 +443,10 @@ public class forgotPassword extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField lname;
+    private javax.swing.JTextField pass;
+    private javax.swing.JTextField sec;
+    private javax.swing.JTextField userType;
+    private javax.swing.JTextField user_name;
     // End of variables declaration//GEN-END:variables
 }

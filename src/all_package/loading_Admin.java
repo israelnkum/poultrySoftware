@@ -5,17 +5,70 @@
  */
 package all_package;
 
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author oSikaNi iSraeL
  */
-public class loading_Admin extends javax.swing.JFrame {
+public class loading_Admin extends javax.swing.JFrame implements Runnable {
+    
+       Connection conn;
+    int s=0;
+    Thread th;
 
     /**
      * Creates new form loading_Admin
      */
     public loading_Admin() {
+      super ("Loading");
+       
         initComponents();
+        th=new Thread((Runnable)this);
+    }
+    
+      public void setUpLoading (){
+    setVisible(false);
+    th.start();
+    
+    }
+    
+    public void run(){
+    try{
+    
+        for (int i=1;i<=200;i++){
+            
+            s=s+1;
+            
+            int m= jProgressBar1.getMaximum();
+            int v= jProgressBar1.getValue();
+            
+            if(v<m){
+            
+                jProgressBar1.setValue(jProgressBar1.getValue()+1);
+            }
+            else{
+            i=201;
+           
+         
+     
+           
+            setVisible(false);
+            
+            admin_page log = new admin_page();
+            
+            log.setVisible(true);
+       
+            }
+            Thread.sleep(50);
+    }
+    }
+    catch(Exception e){
+    
+        JOptionPane.showMessageDialog(null, e);
+     
+    }
     }
 
     /**
@@ -31,7 +84,6 @@ public class loading_Admin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jProgressBar1 = new javax.swing.JProgressBar();
         jLabel5 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -57,11 +109,6 @@ public class loading_Admin extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("M A N A G E M E N T  S Y S T E M");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, -1, -1));
-
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Welcome<###>");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));
         jPanel1.add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -112,7 +159,6 @@ public class loading_Admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -121,4 +167,6 @@ public class loading_Admin extends javax.swing.JFrame {
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+
+   
 }

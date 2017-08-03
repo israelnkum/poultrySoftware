@@ -7,6 +7,10 @@ package all_package;
 
 import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,13 +20,17 @@ public class login_Window extends javax.swing.JFrame {
     
     int xMouse;
     int yMouse;
+    
+          Connection conn;
+    ResultSet rs;
+    PreparedStatement pst;
 
     /**
      * Creates new form login_Window
      */
     public login_Window() {
         initComponents();
-        
+        conn = java_Connection.ConnecrDb();
         jPanel2.setBackground(new Color(0,0,0,7));
     }
 
@@ -79,12 +87,22 @@ public class login_Window extends javax.swing.JFrame {
         jPasswordField1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jPasswordField1.setForeground(new java.awt.Color(255, 255, 255));
         jPasswordField1.setBorder(null);
+        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordField1KeyPressed(evt);
+            }
+        });
         jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 240, 40));
 
         jTextField1.setBackground(new java.awt.Color(8, 8, 45));
         jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setBorder(null);
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField1KeyPressed(evt);
+            }
+        });
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 240, 40));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 240, -1));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 240, -1));
@@ -119,6 +137,11 @@ public class login_Window extends javax.swing.JFrame {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Login Rounded Right_25px_2.png"))); // NOI18N
         jButton2.setText("Login");
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Circled User Male_100px_2.png"))); // NOI18N
@@ -189,14 +212,216 @@ public class login_Window extends javax.swing.JFrame {
     private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
         // TODO add your handling code here:
         
+
+    }//GEN-LAST:event_jButton1KeyPressed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+        
+          
+            String a1= (String) jComboBox1.getSelectedItem();
+        
+         String sql = "select * from new_employee where  user_name=? and passWord=? and user_type='"+a1+"'";
+        try{
+       
+            pst=conn.prepareStatement(sql);
+            pst.setString(1, jTextField1.getText());
+            pst.setString(2, jPasswordField1.getText());
+            
+            rs=pst.executeQuery();
+            
+            if(rs.next() ){
+            rs.close();
+            pst.close();
+            
+            if(jComboBox1.getSelectedItem().equals("Admin")){
+            setVisible(false);
+            loading_Admin on = new loading_Admin();
+            
+            on.setUpLoading();
+            on.setVisible(true);
+           
+            }
+            else if (jComboBox1.getSelectedItem().equals("Employee")){
+            
+            setVisible(false);
+            loading_Employee on = new loading_Employee();
+            on.setUpLoading1();
+            on.setVisible(true);
+            }
+      
+            }
+           
+            
+            else{
+              JOptionPane.showMessageDialog(null, "incorrect username and password ");
+            }
+                    
+                    
+        }
+        
+        catch(Exception e){
+        
+        JOptionPane.showMessageDialog(null, e);
+        }
+        
+        finally{
+        
+            try{
+            rs.close();
+            pst.close();
+            
+        }
+        catch(Exception e){
+                
+                
+                }
+      
+        
+        } 
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jPasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyPressed
+        // TODO add your handling code here:
+                
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
         
-         setVisible(false);
+            
+            String a1= (String) jComboBox1.getSelectedItem();
         
-        forgotPassword fp = new forgotPassword();
-        fp.setVisible(true);
+         String sql = "select * from new_employee where  user_name=? and passWord=? and user_type='"+a1+"'";
+        try{
+       
+            pst=conn.prepareStatement(sql);
+            pst.setString(1, jTextField1.getText());
+            pst.setString(2, jPasswordField1.getText());
+            
+            rs=pst.executeQuery();
+            
+            if(rs.next() ){
+            rs.close();
+            pst.close();
+            
+            if(jComboBox1.getSelectedItem().equals("Admin")){
+            setVisible(false);
+            loading_Admin on = new loading_Admin();
+            on.setUpLoading();
+            on.setVisible(true);
+            }
+            else if (jComboBox1.getSelectedItem().equals("Employee")){
+            
+            setVisible(false);
+            loading_Employee on = new loading_Employee();
+            on.setUpLoading1();
+            on.setVisible(true);
+            }
+      
+            }
+           
+            
+            else{
+              JOptionPane.showMessageDialog(null, "incorrect username and password ");
+            }
+                    
+                    
         }
-    }//GEN-LAST:event_jButton1KeyPressed
+        
+        catch(Exception e){
+        
+        JOptionPane.showMessageDialog(null, e);
+        }
+        
+        finally{
+        
+            try{
+            rs.close();
+            pst.close();
+            
+        }
+        catch(Exception e){
+                
+                
+                }
+      
+        
+        } 
+        
+        }
+        
+ 
+    }//GEN-LAST:event_jPasswordField1KeyPressed
+
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+        // TODO add your handling code here:
+        
+        
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        
+        
+            String a1= (String) jComboBox1.getSelectedItem();
+        
+         String sql = "select * from new_employee where  user_name=? and passWord=? and user_type='"+a1+"'";
+        try{
+       
+            pst=conn.prepareStatement(sql);
+            pst.setString(1, jTextField1.getText());
+            pst.setString(2, jPasswordField1.getText());
+            
+            rs=pst.executeQuery();
+            
+            if(rs.next() ){
+            rs.close();
+            pst.close();
+            
+            if(jComboBox1.getSelectedItem().equals("Admin")){
+            setVisible(false);
+            loading_Admin on = new loading_Admin();
+            on.setUpLoading();
+            on.setVisible(true);
+            }
+            else if (jComboBox1.getSelectedItem().equals("Employee")){
+            
+            setVisible(false);
+            loading_Employee on = new loading_Employee();
+            on.setUpLoading1();
+            on.setVisible(true);
+            }
+      
+            }
+           
+            
+            else{
+              JOptionPane.showMessageDialog(null, "incorrect username and password ");
+            }
+                    
+                    
+        }
+        
+        catch(Exception e){
+        
+        JOptionPane.showMessageDialog(null, e);
+        }
+        
+        finally{
+        
+            try{
+            rs.close();
+            pst.close();
+            
+        }
+        catch(Exception e){
+                
+                
+                }
+      
+        
+        } 
+        }
+      
+        
+    }//GEN-LAST:event_jTextField1KeyPressed
 
     /**
      * @param args the command line arguments

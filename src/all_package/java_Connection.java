@@ -13,7 +13,7 @@ public class java_Connection {
         
           Class.forName("org.sqlite.JDBC");
                 
-                Connection conn =DriverManager.getConnection("jdbc:sqlite:C:\\Users\\oSikaNi iSraeL\\Documents\\NetBeansProjects\\Final_Poultry_Management\\poultry_management_System.sqlite");
+                Connection conn =DriverManager.getConnection("jdbc:sqlite:poultry_management_System.sqlite");
                             return conn;
                         
         }

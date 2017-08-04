@@ -6,6 +6,7 @@
 package all_package;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -119,6 +120,11 @@ public class Employee_new_bird extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton1KeyPressed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 480, -1, -1));
 
         jButton2.setBackground(new java.awt.Color(8, 8, 45));
@@ -137,6 +143,11 @@ public class Employee_new_bird extends javax.swing.JFrame {
         jPanel1.add(color_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 380, 70, 30));
 
         pen_no.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        pen_no.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pen_noKeyPressed(evt);
+            }
+        });
         jPanel1.add(pen_no, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 70, 30));
 
         cage_no.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -260,10 +271,17 @@ public class Employee_new_bird extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        setVisible(false);
-        Employee_BirdPage ap = new Employee_BirdPage();
-        ap.setVisible(true);
+  
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1KeyPressed
+
+    private void pen_noKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pen_noKeyPressed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_pen_noKeyPressed
 
     /**
      * @param args the command line arguments

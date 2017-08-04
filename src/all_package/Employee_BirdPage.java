@@ -78,7 +78,7 @@ public class Employee_BirdPage extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         cage_no = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        search = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -91,7 +91,7 @@ public class Employee_BirdPage extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        searchFiled = new javax.swing.JTextField();
         collor = new javax.swing.JTextField();
         Pen_no = new javax.swing.JTextField();
         bre_type = new javax.swing.JComboBox<>();
@@ -161,6 +161,11 @@ public class Employee_BirdPage extends javax.swing.JFrame {
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Delete_25px.png"))); // NOI18N
         jButton4.setText("Delete");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 80, -1, -1));
 
         jButton5.setBackground(new java.awt.Color(8, 8, 45));
@@ -178,10 +183,10 @@ public class Employee_BirdPage extends javax.swing.JFrame {
         cage_no.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jPanel1.add(cage_no, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 490, 80, 30));
 
-        jComboBox1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 140, 40));
+        search.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        search.setForeground(new java.awt.Color(255, 255, 255));
+        search.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "bird_id", "bird_type", "breed_type", "color", "date_added" }));
+        jPanel1.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 140, 40));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -191,7 +196,7 @@ public class Employee_BirdPage extends javax.swing.JFrame {
 
         jComboBox2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jComboBox2.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chooe...", "Category A", "Category B", "Category C", "Category D" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose...", "Category A", "Category B", "Category C", "Category D" }));
         jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 150, 40));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -262,8 +267,13 @@ public class Employee_BirdPage extends javax.swing.JFrame {
         jLabel11.setText("Color");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 440, -1, 40));
 
-        jTextField2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 170, 40));
+        searchFiled.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        searchFiled.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchFiledKeyReleased(evt);
+            }
+        });
+        jPanel1.add(searchFiled, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 170, 40));
 
         collor.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jPanel1.add(collor, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 440, 140, 30));
@@ -498,6 +508,68 @@ public class Employee_BirdPage extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+              
+          int row=jTable1.getSelectedRow();
+            
+            if(row==-1){
+                
+                JOptionPane.showMessageDialog(null, "No Row Selected");
+            
+            }
+            else{
+                
+                 int c = JOptionPane.showConfirmDialog(null, "Do you realy wanna Delete","Delete",JOptionPane.YES_NO_OPTION);
+      
+        if(c==0){
+           String sql =" DELETE FROM new_bird WHERE bird_id =?";
+        try{
+        
+            pst=conn.prepareStatement(sql);
+            pst.setString(1,bird_id.getText());
+            pst.execute();
+            
+            JOptionPane.showMessageDialog(null, " Deleted Successfully");
+        }
+
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        
+        }
+        }
+        
+            }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void searchFiledKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFiledKeyReleased
+        // TODO add your handling code here:
+        
+        
+         try{
+            
+             String select =(String)search.getSelectedItem();
+            String sql ="Select * from new_bird where "+select+"=?";
+            
+            
+            pst=conn.prepareStatement(sql);
+            pst.setString(1,searchFiled.getText());
+            
+            rs=pst.executeQuery();
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            if(rs.next()){
+            
+            }
+            
+        
+        }
+        
+        catch(Exception e){
+        
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_searchFiledKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -547,7 +619,6 @@ public class Employee_BirdPage extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
@@ -570,7 +641,8 @@ public class Employee_BirdPage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JComboBox<String> search;
+    private javax.swing.JTextField searchFiled;
     private javax.swing.JComboBox<String> sex_;
     // End of variables declaration//GEN-END:variables
 }

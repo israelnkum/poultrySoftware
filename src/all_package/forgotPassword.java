@@ -84,7 +84,7 @@ public class forgotPassword extends javax.swing.JFrame {
                    pass.setText(rs.getString(5));
               }
               else{
-              JOptionPane.showMessageDialog(null," Answer your security Question");
+              JOptionPane.showMessageDialog(null,"  Wrong Answer ");
               }
           
           }
@@ -369,8 +369,11 @@ public class forgotPassword extends javax.swing.JFrame {
 
     private void ansaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ansaKeyPressed
         // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
         
-         Retrive();
+            Retrive();
+        }
+         
     }//GEN-LAST:event_ansaKeyPressed
 
     private void jButton3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton3KeyPressed

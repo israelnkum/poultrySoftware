@@ -8,7 +8,9 @@ package all_package;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.MessageFormat;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import net.proteanit.sql.DbUtils;
 
@@ -129,6 +131,11 @@ public class Employee_BirdPage extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Print_25px.png"))); // NOI18N
         jButton2.setText("Print");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 10, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
@@ -569,6 +576,23 @@ public class Employee_BirdPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_searchFiledKeyReleased
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+               MessageFormat header = new MessageFormat("Summary");
+         MessageFormat footer = new MessageFormat("Page{0,number,integer}");
+        
+        try{
+             
+             jTable1.print(JTable.PrintMode.NORMAL, header, footer);
+
+
+    }catch(Exception e)
+    {
+           System.err.format("Cannont print %s%n",e.getMessage());
+
+    }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
